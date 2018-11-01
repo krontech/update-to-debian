@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = update-to-debian
+TARGET = update-to-debian update_real.sh
 TEMPLATE = app
 INSTALLS += target
 
@@ -38,3 +38,7 @@ SOURCES += main.cpp\
 HEADERS  += updatewindow.h
 
 FORMS    += updatewindow.ui
+
+DISTFILES += \
+    update-backend.sh \
+    update_real.sh

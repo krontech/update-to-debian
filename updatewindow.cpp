@@ -12,18 +12,6 @@ UpdateWindow::UpdateWindow(QWidget *parent) :
 {
 	ui->setupUi(this);
 	this->setWindowFlags(Qt::FramelessWindowHint);
-
-	char * string[1000];
-	
-	mkfifo("/tmp/status.pipe", S_IRWXU | S_IRWXG | S_IRWXO);
-	qDebug("about to open FIFO");
-	fp = fopen("/tmp/status.pipe", "w+");
-	qDebug("opened FIFO");
-	
-	while(fread(string, 1, 100, fp)){
-		qDebug()<<"string: " <<string;//do stuff when process B writes to fifo
-		qDebug("UpdateWindow() constructor finished");
-	}
 }
 
 UpdateWindow::~UpdateWindow()
