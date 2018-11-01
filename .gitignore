@@ -1,0 +1,11 @@
+## Ignore project and compiled files
+/update-to-debian.pro.user
+build-update-to-debian-*-Debug/
+build-update-to-debian-*-Release/
+
+## Ignore common temporary files.
+.DS_Store
+*\~
+.directory
+
+
