@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="sd_card_adapter">assets/sd_card_adapter.png</file>
+    </qresource>
+</RCC>
