@@ -17,6 +17,11 @@ public:
 	
 private:
 	Ui::UpdateWindow *ui;
+	FILE *fp;
+	
+private slots:
+	void on_btnClose_clicked();
+	void on_btnProceed_clicked();
 };
 
 #endif // UPDATEWINDOW_H
