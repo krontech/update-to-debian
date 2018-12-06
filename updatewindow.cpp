@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <QDebug>
 #include <qfile.h>
+#include <QTimer>
 
 UpdateWindow::UpdateWindow(QWidget *parent) :
 	QWidget(parent),
@@ -12,6 +13,9 @@ UpdateWindow::UpdateWindow(QWidget *parent) :
 {
 	ui->setupUi(this);
 	this->setWindowFlags(Qt::FramelessWindowHint);
+	//connect(timer, SIGNAL(timeout()), this, SLOT(readStdIn()));
+	timer.setInterval(100);        //setinterval
+	timer.start();        //start
 }
 
 UpdateWindow::~UpdateWindow()
@@ -25,9 +29,13 @@ void UpdateWindow::on_btnClose_clicked()
 }
 void UpdateWindow::on_btnProceed_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex()+1);
-    if(ui->stackedWidget->currentIndex() == 2){
-	    ui->btnProceed->setEnabled(false);
-    }
-    if(ui->stackedWidget->currentIndex() == 3) ui->btnProceed->hide();
+	ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex()+1);
+	if(ui->stackedWidget->currentIndex() == 2){
+		ui->btnProceed->setEnabled(false);
+	}
+	if(ui->stackedWidget->currentIndex() == 3) ui->btnProceed->hide();
+}
+
+void UpdateWindow::readStdIn(){
+	//if();
 }
