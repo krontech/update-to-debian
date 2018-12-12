@@ -1,5 +1,5 @@
 #!/bin/busybox ash
-set -e -o pipefail #fail fast
+#set -e -o pipefail #fail fast
 
 echo "start"
 
