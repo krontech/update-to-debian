@@ -40,5 +40,5 @@ HEADERS  += updatewindow.h
 FORMS    += updatewindow.ui
 
 DISTFILES += \
-    update-backend.sh \
+    update_backend.sh \
     update_real.sh
