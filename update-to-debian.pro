@@ -41,4 +41,5 @@ FORMS    += updatewindow.ui
 
 DISTFILES += \
     update_backend.sh \
-    update_real.sh
+    update_real.sh \
+    deployUpdate.sh
