@@ -1,5 +1,4 @@
 #!/bin/busybox ash
-set -e -o pipefail #fail fast
 
 #May fail, probably because they already exist. That's OK.
 mkfifo to-update-ui || true
