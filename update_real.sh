@@ -6,6 +6,7 @@ mkfifo to-update-backend || true
 
 >&2 echo "stopping camApp"
 killall camApp || true
+sleep 0.8
 
 >&2 echo "starting update-to-debian"
 ./update_backend.sh < to-update-backend > to-update-ui &
