@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QTimer>
+#include <QObject>
 #include <QSocketNotifier>
 #include <iostream>
 
