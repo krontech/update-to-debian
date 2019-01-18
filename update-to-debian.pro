@@ -43,3 +43,6 @@ DISTFILES += \
     update_backend.sh \
     update_real.sh \
     deployUpdate.sh
+
+RESOURCES += \
+    resources.qrc
