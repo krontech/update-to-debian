@@ -12,6 +12,7 @@ TARGET = update-to-debian
 TEMPLATE = app
 INSTALLS += target
 
+LIBS += -static-libstdc++
 
 ## Tweaks for Debian builds.
 exists( $${QT_SYSROOT}/etc/debian_version ) {
