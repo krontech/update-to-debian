@@ -62,3 +62,8 @@ void UpdateWindow::readStdIn(){
 	
 	qDebug()<<"readStdIn" << QString::fromStdString(line);
 }
+
+void UpdateWindow::writeStdIn(){
+	std::string line;
+		
+}

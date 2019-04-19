@@ -17,8 +17,9 @@ class UpdateWindow : public QWidget
 	
 public:
 	explicit UpdateWindow(QWidget *parent = 0);
-	~UpdateWindow();
-	
+	~UpdateWindow();	
+	void writeStdIn();
+
 private:
 	Ui::UpdateWindow *ui;
 	FILE *fp;
