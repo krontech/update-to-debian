@@ -15,5 +15,5 @@ update-to-debian -qws > to-update-backend < to-update-ui &
 echo "before sleep"
 sleep 5
 echo "after sleep"
-echo "start" > to-update-ui
+echo "WaitForUserInput" > to-update-ui
 wait

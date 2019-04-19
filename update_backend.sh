@@ -1,12 +1,12 @@
 #!/bin/busybox ash
 
 sleep 5
-echo "start"
+echo "WaitForUserInput"
 
 read -r LINE
-if [ $LINE = "start" ];
+if [ $LINE = "WaitForUserInput" ];
 then
-    echo starting
+    echo WaitForUserInput
 else
     >&2 echo "Process cancelled."
     exit 128

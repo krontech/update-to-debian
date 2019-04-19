@@ -53,8 +53,8 @@ void UpdateWindow::readStdIn(){
 	
 	qDebug()<<"fromstdstring" << QString::fromStdString(line);
 	
-	if (line == "start") {
-		qDebug()<<"line==start";
+	if (line == "WaitForUserInput") {
+		qDebug()<<"line==WaitForUserInput";
 		qDebug()<<"button status:" << ui->btnProceed->isEnabled();
 		ui->btnProceed->setEnabled(true);
 		qDebug()<<"button status:" << ui->btnProceed->isEnabled();
