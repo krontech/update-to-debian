@@ -11,4 +11,7 @@ sleep 0.8
 >&2 echo "starting update-to-debian"
 ./update_backend.sh < to-update-backend > to-update-ui &
 update-to-debian -qws > to-update-backend < to-update-ui &
+
+sleep 5
+echo "start"
 wait
