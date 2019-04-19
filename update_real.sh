@@ -12,6 +12,8 @@ sleep 0.8
 ./update_backend.sh < to-update-backend > to-update-ui &
 update-to-debian -qws > to-update-backend < to-update-ui &
 
+echo "before sleep"
 sleep 5
-echo "start"
+echo "after sleep"
+echo "start" > to-update-ui
 wait

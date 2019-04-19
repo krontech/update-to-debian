@@ -1,5 +1,6 @@
 #!/bin/busybox ash
 
+sleep 5
 echo "start"
 
 read -r LINE

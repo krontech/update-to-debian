@@ -47,13 +47,18 @@ void UpdateWindow::readStdIn(){
 	std::string line;
 	std::getline(std::cin, line);
 	
-	if (std::cin.eof() || line == "start") {
-		ui->btnProceed->setEnabled(true);
-	}
-	
-	qDebug()<<"readStdIn" << QString::fromStdString(line);
-	
 	if (std::cin.eof() || line == "") {
 		return;
 	}
+	
+	qDebug()<<"fromstdstring" << QString::fromStdString(line);
+	
+	if (line == "start") {
+		qDebug()<<"line==start";
+		qDebug()<<"button status:" << ui->btnProceed->isEnabled();
+		ui->btnProceed->setEnabled(true);
+		qDebug()<<"button status:" << ui->btnProceed->isEnabled();
+	}
+	
+	qDebug()<<"readStdIn" << QString::fromStdString(line);
 }
