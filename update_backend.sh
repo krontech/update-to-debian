@@ -13,8 +13,6 @@ else
 fi
 
 
-#start multistrap/debootstrap here
-
 >&2 echo "update_real.sh completed!"
 
 #exit 0

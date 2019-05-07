@@ -23,7 +23,6 @@ UpdateWindow::UpdateWindow(QWidget *parent) :
 	std::cout << "First message" << std::endl;
 	std::cout << "> " << std::flush;
 	connect(qsn, SIGNAL(activated(int)), this, SLOT(readStdIn()));
-	qDebug()<<"test";
 }
 
 UpdateWindow::~UpdateWindow()
@@ -61,16 +60,11 @@ void UpdateWindow::readStdIn(){
 		return;
 	}
 	
-	qDebug()<<"fromstdstring" << QString::fromStdString(line);
+	qDebug()<<"readStdIn" << QString::fromStdString(line);
 	
 	if (line == "WaitForUserInput") {
-		qDebug()<<"line==WaitForUserInput";
-		qDebug()<<"button status:" << ui->btnProceed->isEnabled();
 		ui->btnProceed->setEnabled(true);
-		qDebug()<<"button status:" << ui->btnProceed->isEnabled();
 	}
-	
-	qDebug()<<"readStdIn" << QString::fromStdString(line);
 }
 
 void UpdateWindow::writeStdIn(){
