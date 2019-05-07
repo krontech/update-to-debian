@@ -7,6 +7,12 @@
 #include <qfile.h>
 #include <QTimer>
 
+#define CURRENT_TAB_1_EXPLANATION  ui->stackedWidget->currentIndex() == 0
+#define CURRENT_TAB_2_SYSCHECK ui->stackedWidget->currentIndex() == 1
+#define CURRENT_TAB_3_WRITE  ui->stackedWidget->currentIndex() == 2
+#define CURRENT_TAB_4_COMPLETE  ui->stackedWidget->currentIndex() == 3
+
+
 UpdateWindow::UpdateWindow(QWidget *parent) :
 	QWidget(parent),
 	ui(new Ui::UpdateWindow)
@@ -34,11 +40,15 @@ void UpdateWindow::on_btnProceed_clicked()
 	ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex()+1);
 	qDebug()<<"index="<<ui->stackedWidget->currentIndex();
 	
-	if(ui->stackedWidget->currentIndex() == 1){
+	if(CURRENT_TAB_2_SYSCHECK){
 		ui->btnProceed->setEnabled(false);
 	}
+
+	if(CURRENT_TAB_3_WRITE){
+		std::cout << "Start";
+	}
 	
-	if(ui->stackedWidget->currentIndex() == 3){
+	if(CURRENT_TAB_4_COMPLETE){
 		ui->btnProceed->hide();
 	}
 }
