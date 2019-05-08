@@ -20,8 +20,8 @@ UpdateWindow::UpdateWindow(QWidget *parent) :
 	ui->setupUi(this);
 	this->setWindowFlags(Qt::FramelessWindowHint);
 	qsn = new QSocketNotifier(fileno(stdin), QSocketNotifier::Read, this);
-	std::cout << "First message" << std::endl;
-	std::cout << "> " << std::flush;
+	std::cout << "message" << std::endl;
+	//std::cout << "> " << std::flush;
 	connect(qsn, SIGNAL(activated(int)), this, SLOT(readStdIn()));
 }
 
@@ -41,6 +41,8 @@ void UpdateWindow::on_btnProceed_clicked()
 	
 	if(CURRENT_TAB_2_SYSCHECK){
 		ui->btnProceed->setEnabled(false);
+		std::cout << "Syscheck" << std::endl;
+		std::cout << "> " << std::flush;
 	}
 
 	if(CURRENT_TAB_3_WRITE){
@@ -62,6 +64,9 @@ void UpdateWindow::readStdIn(){
 	
 	qDebug()<<"readStdIn" << QString::fromStdString(line);
 	
+	if (line == "NoSDPresent") {
+		ui->btnProceed->setEnabled(false);
+	}
 	if (line == "WaitForUserInput") {
 		ui->btnProceed->setEnabled(true);
 	}

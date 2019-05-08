@@ -1,19 +1,42 @@
 #!/bin/busybox ash
 
-sleep 5
-echo "WaitForUserInput"
+echo "backend"
+
+CONTINUE=1
 
 read -r LINE
-if [ $LINE = "WaitForUserInput" ];
-then
-    echo WaitForUserInput
-else
-    >&2 echo "Process cancelled."
-    exit 128
-fi
 
+while [ CONTINUE ];
+do
+    
+    #>&2 echo loop
+    
+    if [ $LINE = "Syscheck" ];
+    then #UI has advanced to second screen; check presence of SD card and readiness of update files on USB
+        sleep 1
+        string=$(ls /dev | grep mmcblk1)
+        #echo >&2 string $string
+        if [[ "$string" = '' ]]; then
+            echo NoSDPresent
+            >&2 echo NoSDPresent
+        else
+            echo "WaitForUserInput"
+            >&2 echo "WaitForUserInput"
+        fi
+    fi
+    
+    if [ $LINE = "Start" ];
+    then #
+        echo "start dd here"
+    fi
+    
+    sleep 1
+done
 
->&2 echo "update_real.sh completed!"
+#echo "update_real.sh completed!"
+#>&2 echo "update_real.sh completed!"
+
+#./update_backend.sh &
 
 #exit 0
 #reboot
