@@ -31,7 +31,7 @@ do
     
     >&2 echo loop finish
     echo ""
-    sleep 1
+    sleep .1
 done
 
 #echo "update_real.sh completed!"
