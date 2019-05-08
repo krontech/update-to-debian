@@ -46,7 +46,7 @@ void UpdateWindow::on_btnProceed_clicked()
 	}
 
 	if(CURRENT_TAB_3_WRITE){
-		std::cout << "Start";
+		std::cout << "Start" << std::endl;
 		qDebug()<<"tab 3";
 	}
 	
