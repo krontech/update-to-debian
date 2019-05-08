@@ -1,19 +1,18 @@
 #!/bin/busybox ash
 
-echo "backend"
+>&2 echo "backend"
 
 CONTINUE=1
 
-read -r LINE
 
 while [ CONTINUE ];
 do
-    
-    #>&2 echo loop
+    >&2 echo loop start
+    read -r -t 1 LINE
+    >&2 echo $LINE
     
     if [ $LINE = "Syscheck" ];
     then #UI has advanced to second screen; check presence of SD card and readiness of update files on USB
-        sleep 1
         string=$(ls /dev | grep mmcblk1)
         #echo >&2 string $string
         if [[ "$string" = '' ]]; then
@@ -30,6 +29,8 @@ do
         echo "start dd here"
     fi
     
+    >&2 echo loop finish
+    echo ""
     sleep 1
 done
 
