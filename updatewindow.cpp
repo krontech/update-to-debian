@@ -42,7 +42,7 @@ void UpdateWindow::on_btnProceed_clicked()
 	if(CURRENT_TAB_2_SYSCHECK){
 		ui->btnProceed->setEnabled(false);
 		std::cout << "Syscheck" << std::endl;
-		std::cout << "> " << std::flush;
+		//std::cout << "> " << std::flush;
 	}
 
 	if(CURRENT_TAB_3_WRITE){
