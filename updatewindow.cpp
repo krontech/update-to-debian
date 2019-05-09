@@ -47,7 +47,6 @@ void UpdateWindow::on_btnProceed_clicked()
 
 	if(CURRENT_TAB_3_WRITE){
 		std::cout << "Start" << std::endl;
-		qDebug()<<"tab 3";
 	}
 	
 	if(CURRENT_TAB_4_COMPLETE){
@@ -71,9 +70,4 @@ void UpdateWindow::readStdIn(){
 	if (line == "WaitForUserInput") {
 		ui->btnProceed->setEnabled(true);
 	}
-}
-
-void UpdateWindow::writeStdIn(){
-	std::string line;
-		
 }

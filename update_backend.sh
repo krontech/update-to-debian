@@ -1,6 +1,6 @@
 #!/bin/busybox ash
 
->&2 echo "backend"
+>&2 echo "update_backend.sh"
 
 CONTINUE=1
 
@@ -13,31 +13,25 @@ do
     
     if [ $LINE = "Syscheck" ];
     then #UI has advanced to second screen; check presence of SD card and readiness of update files on USB
-        string=$(ls /dev | grep mmcblk1)
-        #echo >&2 string $string
-        if [[ "$string" = '' ]]; then
+        >&2 echo "list dev"
+        LSDEV=$(ls /dev | grep mmcblk1)
+        if [[ "$LSDEV" = '' ]]; then
             echo NoSDPresent
-            >&2 echo NoSDPresent
         else
-            echo "WaitForUserInput"
-            >&2 echo "WaitForUserInput"
+            echo WaitForUserInput
         fi
     fi
     
     if [ $LINE = "Start" ];
     then #
-        echo "start dd here"
+        echo "start-dd-here"
     fi
     
     >&2 echo loop finish
-    echo ""
-    sleep .1
+    >&2 echo ""
 done
 
-#echo "update_real.sh completed!"
 #>&2 echo "update_real.sh completed!"
-
-#./update_backend.sh &
 
 #exit 0
 #reboot
