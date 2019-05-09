@@ -1,11 +1,7 @@
 #!/bin/busybox ash
 
->&2 echo "update_backend.sh"
 
-CONTINUE=1
-
-
-while [ CONTINUE ];
+while [ 1 ];
 do
     >&2 echo loop start
     read -r -t 1 LINE
@@ -24,14 +20,29 @@ do
     
     if [ $LINE = "Start" ];
     then #
-        echo "start-dd-here"
+        break
     fi
-    
+
     >&2 echo loop finish
     >&2 echo ""
 done
+>&2 echo 'loop done'
 
-#>&2 echo "update_real.sh completed!"
+zcat /media/sda4/debian-2019-05-03.img.gz | dd of=/dev/mmcblk1 &
+sleep 1
+while [ 1 ];
+do
+    KILLALL=$(killall -USR1 dd)
+    if [ KILLALL = 'killall: dd: no process killed' ];
+    then
+        break
+    else
+        echo $KILLALL 
+        sleep 1
+    fi
+done
+
+>&2 echo "update_backend.sh completed!"
 
 #exit 0
 #reboot
