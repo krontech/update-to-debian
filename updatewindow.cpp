@@ -66,8 +66,31 @@ void UpdateWindow::readStdIn(){
 	
 	if (line == "NoSDPresent") {
 		ui->btnProceed->setEnabled(false);
+		return;
 	}
+	
 	if (line == "WaitForUserInput") {
 		ui->btnProceed->setEnabled(true);
+		return;
 	}
+	
+	QString qstring;
+	qstring.operator =(QString::fromStdString(line));
+	qDebug()<<"qstring is " <<qstring;
+	
+	if(!qstring.contains("out")) return;
+	qDebug()<<"string contains  out";
+	
+	qstring.truncate(qstring.indexOf('+'));
+	qDebug()<<"truncated is " << qstring;
+	
+	int64_t integer = qstring.toInt();
+	qDebug()<<"integer is  " << integer;
+	
+	float percent = 100 * integer / 123456;
+	qDebug()<<"percent is  " << percent;
+	
+	qDebug();
+	
+	ui->progressBar->setValue(percent);
 }
