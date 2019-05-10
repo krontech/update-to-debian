@@ -30,7 +30,7 @@ UpdateWindow::~UpdateWindow()
 	delete ui;
 }
 
-void UpdateWindow::on_btnClose_clicked()
+void UpdateWindow::on_btnCancel_clicked()
 {
 	exit(0); //Presumably, to restart the camera.
 }

@@ -26,7 +26,7 @@ private:
 	QTimer timer;
 	
 private slots:
-	void on_btnClose_clicked();
+	void on_btnCancel_clicked();
 	void on_btnProceed_clicked();
 	void readStdIn();
 };

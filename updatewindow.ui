@@ -157,7 +157,7 @@ Press &quot;Proceed&quot; after you have inserted the MicroSD card and adapter i
     </widget>
    </widget>
    <widget class="QWidget" name="page_2">
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="lblSyscheckStatus">
      <property name="geometry">
       <rect>
        <x>270</x>
@@ -227,7 +227,7 @@ Press &quot;Proceed&quot; to continue.</string>
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="lblSyscheckWarning">
      <property name="geometry">
       <rect>
        <x>270</x>
@@ -280,8 +280,8 @@ Press &quot;Proceed&quot; to continue.</string>
     <widget class="QProgressBar" name="progressBar">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>180</y>
+       <x>260</x>
+       <y>150</y>
        <width>381</width>
        <height>51</height>
       </rect>
@@ -312,11 +312,11 @@ Press &quot;Proceed&quot; to continue.</string>
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="lblWrite">
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>100</y>
+       <x>280</x>
+       <y>70</y>
        <width>341</width>
        <height>71</height>
       </rect>
@@ -384,13 +384,13 @@ Press &quot;Proceed&quot; to continue.</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="label_15">
+    <widget class="QLabel" name="lblComplete">
      <property name="geometry">
       <rect>
        <x>270</x>
        <y>60</y>
        <width>291</width>
-       <height>151</height>
+       <height>221</height>
       </rect>
      </property>
      <property name="font">
@@ -476,7 +476,7 @@ Please power down your camera and replace the bottom System SD Card with the new
     <string>Proceed →</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btnClose">
+  <widget class="QPushButton" name="btnCancel">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -501,7 +501,7 @@ Please power down your camera and replace the bottom System SD Card with the new
   <zorder>lblHeader</zorder>
   <zorder>lblSteps</zorder>
   <zorder>btnProceed</zorder>
-  <zorder>btnClose</zorder>
+  <zorder>btnCancel</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
