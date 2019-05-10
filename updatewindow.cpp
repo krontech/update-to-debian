@@ -42,7 +42,6 @@ void UpdateWindow::on_btnProceed_clicked()
 	if(CURRENT_TAB_2_SYSCHECK){
 		ui->btnProceed->setEnabled(false);
 		std::cout << "Syscheck" << std::endl;
-		//std::cout << "> " << std::flush;
 	}
 
 	if(CURRENT_TAB_3_WRITE){
@@ -76,21 +75,11 @@ void UpdateWindow::readStdIn(){
 	
 	QString qstring;
 	qstring.operator =(QString::fromStdString(line));
-	qDebug()<<"qstring is " <<qstring;
-	
 	if(!qstring.contains("out")) return;
-	qDebug()<<"string contains  out";
-	
 	qstring.truncate(qstring.indexOf('+'));
-	qDebug()<<"truncated is " << qstring;
-	
 	int64_t integer = qstring.toInt();
-	qDebug()<<"integer is  " << integer;
-	
 	float percent = 100 * integer / 123456;
 	qDebug()<<"percent is  " << percent;
-	
 	qDebug();
-	
 	ui->progressBar->setValue(percent);
 }

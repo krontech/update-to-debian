@@ -9,22 +9,19 @@ do
     
     if [ "$LINE" = "Syscheck" ];
     then #UI has advanced to second screen; check presence of SD card and readiness of update files on USB
-        >&2 echo "list dev"
-        LSDEV=$(ls /dev | grep mmcblk1)
+        LSDEV=$(ls /dev | grep mmcblk1) # check presence of SD card in top slot 
         if [[ "$LSDEV" == '' ]]; then
             echo NoSDPresent
+            continue
         else
             echo WaitForUserInput
         fi
     fi
     
     if [[ "$LINE" == "Start" ]];
-    then #
+    then # User has pressed Proceed button to start update
         break
     fi
-
-    >&2 echo loop finish
-    >&2 echo ""
 done
 >&2 echo 'loop done'
 
@@ -34,14 +31,11 @@ sleep 1
 while [ 1 ];
 do
     KILLALL="$(2>&1 killall -USR1 dd)"
-    >&2 echo "killall   $KILLALL"
     if [[ "$KILLALL" == '' ]];
     then
-        echo $KILLALL 
-        #>&1 echo killall: $KILLALL 
-        sleep 1
+        sleep 1 # If killall command was successful (ie. and dd has output its progress), KILLALL will be empty.
     else
-        break
+        break # If killall command errored out, dd has finished or errored out.
     fi
 done
 
