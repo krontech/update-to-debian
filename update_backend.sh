@@ -1,5 +1,6 @@
 #!/bin/busybox ash
 
+cd $(realpath $(dirname $0))
 
 while [ 1 ];
 do
@@ -25,7 +26,7 @@ do
 done
 >&2 echo 'loop done'
 
-zcat /media/sda4/debian-2019-05-03.img.gz | dd of=/dev/mmcblk1 count=123456 2>&1 &
+zcat debian.img.gz | dd of=/dev/mmcblk1 count=123456 2>&1 &
 #temporarily use a small number of blocks so that tests are quicker and write less to the SD card
 sleep 1
 while [ 1 ];
