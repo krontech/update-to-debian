@@ -10,13 +10,18 @@ do
     
     if [ "$LINE" = "Syscheck" ];
     then #UI has advanced to second screen; check presence of SD card and readiness of update files on USB
-        LSDEV=$(ls /dev | grep mmcblk1) # check presence of SD card in top slot 
+    
+        # check presence of SD card in top slot 
+        LSDEV=$(ls /dev | grep mmcblk1)
         if [[ "$LSDEV" == '' ]]; then
             echo NoSDPresent
             continue
         else
             echo WaitForUserInput
         fi
+
+        # check update files on USB 
+        
     fi
     
     if [[ "$LINE" == "Start" ]];

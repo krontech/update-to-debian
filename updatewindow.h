@@ -24,11 +24,13 @@ private:
 	FILE *fp;
 	QSocketNotifier *qsn;
 	QTimer timer;
+	int usbStatus, systemSDStatus, updateSDStatus;
 	
 private slots:
 	void on_btnCancel_clicked();
 	void on_btnProceed_clicked();
 	void readStdIn();
+	void updateSyscheckText();
 };
 
 #endif // UPDATEWINDOW_H

@@ -12,6 +12,12 @@
 #define CURRENT_TAB_3_WRITE  ui->stackedWidget->currentIndex() == 2
 #define CURRENT_TAB_4_COMPLETE  ui->stackedWidget->currentIndex() == 3
 
+typedef enum SyscheckValues
+{
+	SYSCHECK_CHECKING = 0,
+	SYSCHECK_OK,
+	SYSCHECK_FAIL
+} SyscheckValues;
 
 UpdateWindow::UpdateWindow(QWidget *parent) :
 	QWidget(parent),
@@ -23,6 +29,8 @@ UpdateWindow::UpdateWindow(QWidget *parent) :
 	std::cout << "message" << std::endl;
 	//std::cout << "> " << std::flush;
 	connect(qsn, SIGNAL(activated(int)), this, SLOT(readStdIn()));
+	usbStatus = systemSDStatus = updateSDStatus = SYSCHECK_CHECKING;
+	updateSyscheckText();
 }
 
 UpdateWindow::~UpdateWindow()
@@ -64,11 +72,15 @@ void UpdateWindow::readStdIn(){
 	qDebug()<<"readStdIn" << QString::fromStdString(line);
 	
 	if (line == "NoSDPresent") {
+		updateSDStatus = SYSCHECK_FAIL;
+		updateSyscheckText();
 		ui->btnProceed->setEnabled(false);
 		return;
 	}
 	
 	if (line == "WaitForUserInput") {
+		updateSDStatus = SYSCHECK_OK;
+		updateSyscheckText();
 		ui->btnProceed->setEnabled(true);
 		return;
 	}
@@ -82,4 +94,25 @@ void UpdateWindow::readStdIn(){
 	qDebug()<<"percent is  " << percent;
 	qDebug();
 	ui->progressBar->setValue(percent);
+}
+
+void UpdateWindow::updateSyscheckText(){
+	QString SyscheckText;
+	
+	SyscheckText.append("USB Drive: ");
+	if(usbStatus == SYSCHECK_CHECKING) SyscheckText.append("Checking...\n");
+	if(usbStatus == SYSCHECK_OK) SyscheckText.append("OK\n");
+	if(usbStatus == SYSCHECK_FAIL) SyscheckText.append("Fail\n");
+	SyscheckText.append("System SD Card: ");
+	if(systemSDStatus == SYSCHECK_CHECKING) SyscheckText.append("Checking...\n");
+	if(systemSDStatus == SYSCHECK_OK) SyscheckText.append("OK\n");
+	if(systemSDStatus == SYSCHECK_FAIL) SyscheckText.append("Fail\n");
+	SyscheckText.append("Update SD Card: ");
+	if(updateSDStatus == SYSCHECK_CHECKING) SyscheckText.append("Checking...\n");
+	if(updateSDStatus == SYSCHECK_OK) SyscheckText.append("OK\n");
+	if(updateSDStatus == SYSCHECK_FAIL) SyscheckText.append("Fail\n");
+	
+	SyscheckText.append("Press \"Proceed\" to continue.");
+	
+	ui->lblSyscheckStatus->setText(SyscheckText);
 }
