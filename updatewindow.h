@@ -25,6 +25,7 @@ private:
 	QSocketNotifier *qsn;
 	QTimer timer;
 	int usbStatus, systemSDStatus, updateSDStatus;
+	QString usbStatusString, systemSDStatusString, updateSDStatusString;
 	
 private slots:
 	void on_btnCancel_clicked();

@@ -29,6 +29,7 @@ UpdateWindow::UpdateWindow(QWidget *parent) :
 	std::cout << "message" << std::endl;
 	connect(qsn, SIGNAL(activated(int)), this, SLOT(readStdIn()));
 	usbStatus = systemSDStatus = updateSDStatus = SYSCHECK_CHECKING;
+	usbStatusString = systemSDStatusString = updateSDStatusString = "Checking...\n";
 	updateSyscheckText();
 }
 
@@ -72,6 +73,7 @@ void UpdateWindow::readStdIn(){
 	
 	if (line == "NoTopSDPresent") {
 		updateSDStatus = SYSCHECK_FAIL;
+		updateSDStatusString = "Fail\n";
 		updateSyscheckText();
 		ui->btnProceed->setEnabled(false);
 		return;
@@ -79,6 +81,7 @@ void UpdateWindow::readStdIn(){
 	
 	if (line == "TopSDPresent") {
 		updateSDStatus = SYSCHECK_OK;
+		updateSDStatusString = "OK\n";
 		updateSyscheckText();
 		ui->btnProceed->setEnabled(true);
 		return;
@@ -87,13 +90,13 @@ void UpdateWindow::readStdIn(){
 	QString qstring;
 	qstring.operator =(QString::fromStdString(line));
 	
-	if(qstring.contains("FAILED")) usbStatus = SYSCHECK_FAIL;
-	if(qstring.contains("No such file")) usbStatus = SYSCHECK_FAIL;
+	if(qstring.contains("FAILED")) usbStatusString = "Fail\n";
+	if(qstring.contains("No such file")) usbStatusString = "Fail\n";
 	if(line == "USBCheckStart"){
-		usbStatus = SYSCHECK_CHECKING;
+		usbStatusString = "Checking...\n";
 	}
 	if(line == "USBCheckDone"){
-		if(usbStatus != SYSCHECK_FAIL) usbStatus = SYSCHECK_OK;
+		if(!usbStatusString.contains("Fail")) usbStatusString = "OK\n";
 	}
 	if(qstring.contains("out") && qstring.contains("+")){
 		qstring.truncate(qstring.indexOf('+'));
@@ -109,18 +112,14 @@ void UpdateWindow::updateSyscheckText(){
 	QString SyscheckText;
 	
 	SyscheckText.append("USB Drive: ");
-	if(usbStatus == SYSCHECK_CHECKING) SyscheckText.append("Checking...\n");
-	if(usbStatus == SYSCHECK_OK) SyscheckText.append("OK\n");
-	if(usbStatus == SYSCHECK_FAIL) SyscheckText.append("Fail\n");
+	SyscheckText.append(usbStatusString);
 	SyscheckText.append("System SD Card: ");
 	if(systemSDStatus == SYSCHECK_CHECKING) SyscheckText.append("Checking...\n");
 	if(systemSDStatus == SYSCHECK_OK) SyscheckText.append("OK\n");
 	if(systemSDStatus == SYSCHECK_FAIL) SyscheckText.append("Fail\n");
 	SyscheckText.append("Update SD Card: ");
-	if(updateSDStatus == SYSCHECK_CHECKING) SyscheckText.append("Checking...\n");
-	if(updateSDStatus == SYSCHECK_OK) SyscheckText.append("OK\n");
-	if(updateSDStatus == SYSCHECK_FAIL) SyscheckText.append("Fail\n");
-	
+	SyscheckText.append(updateSDStatusString);
+
 	SyscheckText.append("Press \"Proceed\" to continue.");
 	
 	ui->lblSyscheckStatus->setText(SyscheckText);
