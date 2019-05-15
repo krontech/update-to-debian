@@ -1,6 +1,7 @@
 #!/bin/busybox ash
 
 cd $(realpath $(dirname $0))
+USBCHECKED=0
 
 while [ 1 ];
 do
@@ -15,13 +16,15 @@ do
         LSDEV=$(ls /dev | grep mmcblk1)
         if [[ "$LSDEV" == '' ]]; then
             echo NoSDPresent
-            continue
         else
             echo WaitForUserInput
         fi
-
-        # check update files on USB 
-        
+        if [[ $USBCHECKED == 0 ]]; then
+                USBCHECKED=1
+                echo USBCheckStart
+                md5sum -c update.md5sum 2>&1
+                echo USBCheckDone
+        fi
     fi
     
     if [[ "$LINE" == "Start" ]];

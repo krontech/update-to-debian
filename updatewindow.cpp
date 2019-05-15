@@ -27,7 +27,6 @@ UpdateWindow::UpdateWindow(QWidget *parent) :
 	this->setWindowFlags(Qt::FramelessWindowHint);
 	qsn = new QSocketNotifier(fileno(stdin), QSocketNotifier::Read, this);
 	std::cout << "message" << std::endl;
-	//std::cout << "> " << std::flush;
 	connect(qsn, SIGNAL(activated(int)), this, SLOT(readStdIn()));
 	usbStatus = systemSDStatus = updateSDStatus = SYSCHECK_CHECKING;
 	updateSyscheckText();
@@ -87,13 +86,23 @@ void UpdateWindow::readStdIn(){
 	
 	QString qstring;
 	qstring.operator =(QString::fromStdString(line));
-	if(!qstring.contains("out")) return;
-	qstring.truncate(qstring.indexOf('+'));
-	int64_t integer = qstring.toInt();
-	float percent = 100 * integer / 123456;
-	qDebug()<<"percent is  " << percent;
-	qDebug();
-	ui->progressBar->setValue(percent);
+	
+	if(qstring.contains("FAILED")) usbStatus = SYSCHECK_FAIL;
+	if(qstring.contains("No such file")) usbStatus = SYSCHECK_FAIL;
+	if(line == "USBCheckStart"){
+		usbStatus = SYSCHECK_CHECKING;
+	}
+	if(line == "USBCheckDone"){
+		if(usbStatus != SYSCHECK_FAIL) usbStatus = SYSCHECK_OK;
+	}
+	if(qstring.contains("out") && qstring.contains("+")){
+		qstring.truncate(qstring.indexOf('+'));
+		int64_t integer = qstring.toInt();
+		float percent = 100 * integer / 123456;
+		qDebug()<<"percent is  " << percent;
+		qDebug();
+		ui->progressBar->setValue(percent);
+	}
 }
 
 void UpdateWindow::updateSyscheckText(){
