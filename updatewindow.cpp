@@ -30,7 +30,7 @@ UpdateWindow::UpdateWindow(QWidget *parent) :
 	connect(qsn, SIGNAL(activated(int)), this, SLOT(readStdIn()));
 	usbStatus = systemSDStatus = updateSDStatus = SYSCHECK_CHECKING;
 	usbStatusString = systemSDStatusString = updateSDStatusString = "Checking...\n";
-	updateSyscheckText();
+	ui->btnProceed->setEnabled(true);
 }
 
 UpdateWindow::~UpdateWindow()
@@ -48,8 +48,8 @@ void UpdateWindow::on_btnProceed_clicked()
 	qDebug()<<"index="<<ui->stackedWidget->currentIndex();
 	
 	if(CURRENT_TAB_2_SYSCHECK){
-		ui->btnProceed->setEnabled(false);
 		std::cout << "Tab-Syscheck" << std::endl;
+		updateSyscheckTab();
 	}
 
 	if(CURRENT_TAB_3_WRITE){
@@ -74,16 +74,14 @@ void UpdateWindow::readStdIn(){
 	if (line == "NoTopSDPresent") {
 		updateSDStatus = SYSCHECK_FAIL;
 		updateSDStatusString = "Fail\n";
-		updateSyscheckText();
-		ui->btnProceed->setEnabled(false);
+		updateSyscheckTab();
 		return;
 	}
 	
 	if (line == "TopSDPresent") {
 		updateSDStatus = SYSCHECK_OK;
 		updateSDStatusString = "OK\n";
-		updateSyscheckText();
-		ui->btnProceed->setEnabled(true);
+		updateSyscheckTab();
 		return;
 	}
 	
@@ -94,9 +92,15 @@ void UpdateWindow::readStdIn(){
 	if(qstring.contains("No such file")) usbStatusString = "Fail\n";
 	if(line == "USBCheckStart"){
 		usbStatusString = "Checking...\n";
+		usbStatus = SYSCHECK_CHECKING;
+		updateSyscheckTab();
+		return;
 	}
-	if(line == "USBCheckDone"){
-		if(!usbStatusString.contains("Fail")) usbStatusString = "OK\n";
+	if(line == "USBCheckDone" && !usbStatusString.contains("Fail")){
+		usbStatusString = "OK\n";
+		usbStatus = SYSCHECK_OK;
+		updateSyscheckTab();
+		return;
 	}
 	if(qstring.contains("out") && qstring.contains("+")){
 		qstring.truncate(qstring.indexOf('+'));
@@ -106,9 +110,10 @@ void UpdateWindow::readStdIn(){
 		qDebug();
 		ui->progressBar->setValue(percent);
 	}
+	updateSyscheckTab();
 }
 
-void UpdateWindow::updateSyscheckText(){
+void UpdateWindow::updateSyscheckTab(){
 	QString SyscheckText;
 	
 	SyscheckText.append("USB Drive: ");
@@ -120,7 +125,9 @@ void UpdateWindow::updateSyscheckText(){
 	SyscheckText.append("Update SD Card: ");
 	SyscheckText.append(updateSDStatusString);
 
-	SyscheckText.append("Press \"Proceed\" to continue.");
-	
+	if(usbStatus == SYSCHECK_OK && updateSDStatus == SYSCHECK_OK) {
+		SyscheckText.append("Press \"Proceed\" to continue.");
+		ui->btnProceed->setEnabled(true);
+	} else ui->btnProceed->setEnabled(false);
 	ui->lblSyscheckStatus->setText(SyscheckText);
 }
