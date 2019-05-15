@@ -48,7 +48,7 @@ void UpdateWindow::on_btnProceed_clicked()
 	
 	if(CURRENT_TAB_2_SYSCHECK){
 		ui->btnProceed->setEnabled(false);
-		std::cout << "Syscheck" << std::endl;
+		std::cout << "Tab-Syscheck" << std::endl;
 	}
 
 	if(CURRENT_TAB_3_WRITE){
@@ -70,14 +70,14 @@ void UpdateWindow::readStdIn(){
 	
 	qDebug()<<"readStdIn" << QString::fromStdString(line);
 	
-	if (line == "NoSDPresent") {
+	if (line == "NoTopSDPresent") {
 		updateSDStatus = SYSCHECK_FAIL;
 		updateSyscheckText();
 		ui->btnProceed->setEnabled(false);
 		return;
 	}
 	
-	if (line == "WaitForUserInput") {
+	if (line == "TopSDPresent") {
 		updateSDStatus = SYSCHECK_OK;
 		updateSyscheckText();
 		ui->btnProceed->setEnabled(true);
