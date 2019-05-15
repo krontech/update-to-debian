@@ -64,11 +64,10 @@ void UpdateWindow::on_btnProceed_clicked()
 void UpdateWindow::readStdIn(){
 	std::string line;
 	std::getline(std::cin, line);
-	
-	if (std::cin.eof() || line == "") {
-		return;
-	}
-	
+	if (std::cin.eof() || line == "") return;
+	QString qstring;
+	qstring.operator = (QString::fromStdString(line));
+		
 	qDebug()<<"readStdIn" << QString::fromStdString(line);
 	
 	if (line == "NoTopSDPresent") {
@@ -85,23 +84,21 @@ void UpdateWindow::readStdIn(){
 		return;
 	}
 	
-	QString qstring;
-	qstring.operator =(QString::fromStdString(line));
-	
-	if(qstring.contains("FAILED")) usbStatusString = "Fail\n";
-	if(qstring.contains("No such file")) usbStatusString = "Fail\n";
 	if(line == "USBCheckStart"){
 		usbStatusString = "Checking...\n";
 		usbStatus = SYSCHECK_CHECKING;
 		updateSyscheckTab();
 		return;
 	}
+	if(qstring.contains("FAILED")) usbStatusString = "Fail\n";
+	if(qstring.contains("No such file")) usbStatusString = "Fail\n";
 	if(line == "USBCheckDone" && !usbStatusString.contains("Fail")){
 		usbStatusString = "OK\n";
 		usbStatus = SYSCHECK_OK;
 		updateSyscheckTab();
 		return;
 	}
+	
 	if(qstring.contains("out") && qstring.contains("+")){
 		qstring.truncate(qstring.indexOf('+'));
 		int64_t integer = qstring.toInt();
@@ -129,5 +126,6 @@ void UpdateWindow::updateSyscheckTab(){
 		SyscheckText.append("Press \"Proceed\" to continue.");
 		ui->btnProceed->setEnabled(true);
 	} else ui->btnProceed->setEnabled(false);
+	
 	ui->lblSyscheckStatus->setText(SyscheckText);
 }
