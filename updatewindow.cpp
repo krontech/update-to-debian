@@ -49,6 +49,15 @@ void UpdateWindow::on_btnProceed_clicked()
 	
 	if(CURRENT_TAB_2_SYSCHECK){
 		std::cout << "Tab-Syscheck" << std::endl;
+		if(QFile::exists("/opt/camera/to-update-ui")
+		&& QFile::exists("/opt/camera/to-update-backend")) {
+			systemSDStatusString = "OK\n";
+			systemSDStatus = SYSCHECK_OK;
+		}
+		else {
+			systemSDStatusString = "Fail\n";
+			systemSDStatus = SYSCHECK_FAIL;
+		}
 		updateSyscheckTab();
 	}
 
@@ -60,6 +69,7 @@ void UpdateWindow::on_btnProceed_clicked()
 		ui->btnProceed->hide();
 	}
 }
+	
 
 void UpdateWindow::readStdIn(){
 	std::string line;
@@ -125,13 +135,11 @@ void UpdateWindow::updateSyscheckTab(){
 	SyscheckText.append("USB Drive: ");
 	SyscheckText.append(usbStatusString);
 	SyscheckText.append("System SD Card: ");
-	if(systemSDStatus == SYSCHECK_CHECKING) SyscheckText.append("Checking...\n");
-	if(systemSDStatus == SYSCHECK_OK) SyscheckText.append("OK\n");
-	if(systemSDStatus == SYSCHECK_FAIL) SyscheckText.append("Fail\n");
+	SyscheckText.append(systemSDStatusString);
 	SyscheckText.append("Update SD Card: ");
 	SyscheckText.append(updateSDStatusString);
 
-	if(usbStatus == SYSCHECK_OK && updateSDStatus == SYSCHECK_OK) {
+	if(usbStatus == SYSCHECK_OK  &&  systemSDStatus == SYSCHECK_OK  &&  updateSDStatus == SYSCHECK_OK) {
 		SyscheckText.append("Press \"Proceed\" to continue.");
 		ui->btnProceed->setEnabled(true);
 	} else ui->btnProceed->setEnabled(false);
