@@ -83,10 +83,19 @@ void UpdateWindow::readStdIn(){
 	if (line == "TopSDMissing") {
 		updateSDStatus = SYSCHECK_FAIL;
 		updateSDStatusString = "Fail - not present.\n";
+		ui->lblSyscheckWarning->setVisible(false);
 		updateSyscheckTab();
 		return;
 	}
 	
+	if (line == "TopSDVettedBrand") {
+		ui->lblSyscheckWarning->setVisible(false);
+		return;
+	}
+	if (line == "TopSDUnknownBrand") {
+		ui->lblSyscheckWarning->setVisible(true);
+		return;
+	}
 	if (line == "TopSDTooSmall") {
 		updateSDStatus = SYSCHECK_FAIL;
 		updateSDStatusString = "Fail - too small. Minimum size is 4GB.\n";

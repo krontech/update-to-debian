@@ -24,6 +24,11 @@ do
             if [ $(sfdisk -s /dev/mmcblk1) -lt 3730000 ]; then echo TopSDTooSmall
             else echo TopSDGood
             fi
+            
+            if [ $(cat /sys/block/mmcblk1/device/oemid) == 0x5344 ]; # SanDisk
+            then echo TopSDVettedBrand
+            else echo TopSDUnknownBrand
+            fi
         fi
         if [[ $USBCHECKED == 0 ]]; then
                 USBCHECKED=1
