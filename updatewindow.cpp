@@ -106,6 +106,8 @@ void UpdateWindow::readStdIn(){
 		return;
 	}
 	
+	if (line == "ProgramRunFromTopSD") ui->lblExplanation->setText("<html><head/><body><p>Version 0.4.0 is a major software upgrade. It requires an entirely new System SD Card to be created, unlike past upgrades which used the existing System SD Card. To create the new card, insert a blank MicroSD card in the SD Card Slot located on the top of your Chronos. You will need an SD to MicroSD adapter to do this.<br><br><span style=\" font-weight:600; color:#a40000;\">This update must be run from a USB stick, not from the SD card in the top slot. Please move the update files to a USB stick and re-run the update from there.</span></p></body></html>");
+	
 	if(qstring.contains("out") && qstring.contains("+")){
 		qstring.truncate(qstring.indexOf('+'));
 		int64_t integer = qstring.toInt();

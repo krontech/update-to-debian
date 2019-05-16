@@ -3,6 +3,10 @@
 cd $(realpath $(dirname $0))
 USBCHECKED=0
 
+if [ $(pwd | grep mmcblk1) != '' ]; then
+    echo ProgramRunFromTopSD
+fi
+
 while [ 1 ];
 do
     >&2 echo loop start

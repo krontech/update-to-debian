@@ -45,7 +45,7 @@
     <number>0</number>
    </property>
    <widget class="QWidget" name="page">
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="lblExplanation">
      <property name="geometry">
       <rect>
        <x>270</x>
