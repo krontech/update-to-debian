@@ -62,6 +62,7 @@ void UpdateWindow::on_btnProceed_clicked()
 	}
 
 	if(CURRENT_TAB_3_WRITE){
+		ui->btnProceed->setEnabled(false);
 		std::cout << "Start" << std::endl;
 	}
 	
@@ -134,6 +135,9 @@ void UpdateWindow::readStdIn(){
 		qDebug()<<"percent is  " << percent;
 		qDebug();
 		ui->progressBar->setValue(percent);
+	}
+	if(line == "WriteDone"){
+		ui->btnProceed->click();
 	}
 	updateSyscheckTab();
 }

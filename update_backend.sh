@@ -56,7 +56,7 @@ do
         break # If killall command errored out, dd has finished or errored out.
     fi
 done
-
+echo WriteDone
 >&2 echo "update_backend.sh completed!"
 
 #exit 0
