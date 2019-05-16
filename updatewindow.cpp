@@ -70,14 +70,21 @@ void UpdateWindow::readStdIn(){
 		
 	qDebug()<<"readStdIn" << QString::fromStdString(line);
 	
-	if (line == "NoTopSDPresent") {
+	if (line == "TopSDMissing") {
 		updateSDStatus = SYSCHECK_FAIL;
-		updateSDStatusString = "Fail\n";
+		updateSDStatusString = "Fail - not present.\n";
 		updateSyscheckTab();
 		return;
 	}
 	
-	if (line == "TopSDPresent") {
+	if (line == "TopSDTooSmall") {
+		updateSDStatus = SYSCHECK_FAIL;
+		updateSDStatusString = "Fail - too small. Minimum size is 4GB.\n";
+		updateSyscheckTab();
+		return;
+	}
+	
+	if (line == "TopSDGood") {
 		updateSDStatus = SYSCHECK_OK;
 		updateSDStatusString = "OK\n";
 		updateSyscheckTab();
