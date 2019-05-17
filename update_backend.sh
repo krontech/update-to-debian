@@ -57,8 +57,12 @@ do
     fi
 done
 echo WriteDone
->&2 echo "update_backend.sh completed!"
 
-#exit 0
-#reboot
-#shutdown -h now
+while [ "$LINE" != "PowerDown" ];
+do
+    >&2 echo loop start
+    read -r -t 1 LINE
+    >&2 echo "$LINE"
+done
+>&2 echo "update_backend.sh completed!"
+shutdown -h now

@@ -32,6 +32,7 @@ private slots:
 	void on_btnProceed_clicked();
 	void readStdIn();
 	void updateSyscheckTab();
+	void on_btnPowerDown_clicked();
 };
 
 #endif // UPDATEWINDOW_H

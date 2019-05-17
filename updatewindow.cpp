@@ -160,3 +160,7 @@ void UpdateWindow::updateSyscheckTab(){
 	
 	ui->lblSyscheckStatus->setText(SyscheckText);
 }
+void UpdateWindow::on_btnPowerDown_clicked()
+{
+    std::cout << "PowerDown" << std::endl;
+}
