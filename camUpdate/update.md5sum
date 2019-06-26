@@ -1,0 +1,5 @@
+d95cb60a4605c5a581af213e361400f3  update-to-debian
+8bfeffd4b63dabb836965802a386d90d  update.sh
+4f883aa32cc42cf921b33559adefc559  update_backend.sh
+ede4a957e92e9c60d85c4abdc9a09864  update_real.sh
+f5d345d343967215ad6c7214154b8632  debian.img.gz
