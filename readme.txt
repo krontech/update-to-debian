@@ -1,3 +1,8 @@
+Make a debian image archive, named debian.img.gz, using the chronos-updates repository. https://github.com/krontech/chronos-updates/
+Put the archive in the camUpdate folder
+Copy the camUpdate folder to a fat32 USB stick
+Start the update just like any other update would be run on Arago, then follow the directions onscreen.
+
 Run settings:
 
 
