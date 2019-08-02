@@ -44,7 +44,7 @@ do
 done
 >&2 echo 'loop done'
 
-zcat debian.img.gz | dd of=/dev/mmcblk1 count=123456 2>&1 &
+zcat debian.img.gz | dd of=/dev/mmcblk1 2>&1 &
 #temporarily use a small number of blocks so that tests are quicker and write less to the SD card
 sleep 1
 while [ 1 ];
