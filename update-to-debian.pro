@@ -26,9 +26,11 @@ HEADERS  += updatewindow.h
 FORMS    += updatewindow.ui
 
 DISTFILES += \
-    update_backend.sh \
-    update_real.sh \
-    deployUpdate.sh
+    camUpdate/update_backend.sh \
+    camUpdate/update_real.sh \
+    camUpdate/update.sh \
+    deploy_update.sh \
+    make_update.sh
 
 RESOURCES += \
     resources.qrc
