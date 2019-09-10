@@ -60,7 +60,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Version 0.4.0 is a major software upgrade. It requires an entirely new System SD Card to be created, unlike past upgrades which used the existing System SD Card. To create the new card, insert a blank MicroSD card in the SD Card Slot located on the top of your Chronos. You will need an SD to MicroSD adapter to do this.
+      <string>Version 0.4.0 is a major software upgrade. It requires an entirely new System SD Card to be created, unlike past upgrades which used the existing System SD Card. To create the new card, insert a blank MicroSD card into the SD Card Slot located on the top of your Chronos. You will need an SD to MicroSD adapter to do this.
 
 Press &quot;Proceed&quot; after you have inserted the MicroSD card and adapter in the SD Card Slot.</string>
      </property>
@@ -242,7 +242,9 @@ Press &quot;Proceed&quot; to continue.</string>
       </font>
      </property>
      <property name="text">
-      <string>Warning: SD Card is not from a vetted brand, and may fail. Press Proceed to continue, or Refresh to check again.</string>
+      <string>Warning: SD Card is not from a vetted brand, and may fail.
+
+Press Proceed to continue.</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -401,7 +403,7 @@ Press &quot;Proceed&quot; to continue.</string>
      <property name="text">
       <string>Your new card is complete!
 
-Please power down your camera and replace the bottom System SD Card with the new System SD Card in the top.</string>
+Please power down your camera and replace the bottom System SD Card with the new System SD Card from the top.</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
