@@ -26,7 +26,7 @@ UpdateWindow::UpdateWindow(QWidget *parent) :
 	ui->setupUi(this);
 	this->setWindowFlags(Qt::FramelessWindowHint);
 	qsn = new QSocketNotifier(fileno(stdin), QSocketNotifier::Read, this);
-	std::cout << "message" << std::endl;
+	std::cout << "Syscheck" << std::endl;
 	connect(qsn, SIGNAL(activated(int)), this, SLOT(readStdIn()));
 	usbStatus = systemSDStatus = updateSDStatus = SYSCHECK_CHECKING;
 	usbStatusString = systemSDStatusString = updateSDStatusString = "Checking...\n";
@@ -48,7 +48,6 @@ void UpdateWindow::on_btnProceed_clicked()
 	qDebug()<<"index="<<ui->stackedWidget->currentIndex();
 	
 	if(CURRENT_TAB_2_SYSCHECK){
-		std::cout << "Tab-Syscheck" << std::endl;
 		if(QFile::exists("/opt/camera/to-update-ui")
 		&& QFile::exists("/opt/camera/to-update-backend")) {
 			systemSDStatusString = "OK\n";
@@ -156,7 +155,7 @@ void UpdateWindow::updateSyscheckTab(){
 	if(usbStatus == SYSCHECK_OK  &&  systemSDStatus == SYSCHECK_OK  &&  updateSDStatus == SYSCHECK_OK) {
 		SyscheckText.append("Press \"Proceed\" to continue.");
 		ui->btnProceed->setEnabled(true);
-	} else ui->btnProceed->setEnabled(false);
+	} else if(CURRENT_TAB_2_SYSCHECK) ui->btnProceed->setEnabled(false);
 	
 	ui->lblSyscheckStatus->setText(SyscheckText);
 }

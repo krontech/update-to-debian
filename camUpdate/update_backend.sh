@@ -13,8 +13,8 @@ do
     read -r -t 1 LINE
     >&2 echo "$LINE"
     
-    if [ "$LINE" = "Tab-Syscheck" ];
-    then # UI has advanced to second screen; check presence of SD card and readiness of update files on USB
+    if [ "$LINE" = "Syscheck" ];
+    then # check readiness of SD card and USB flash drive
     
         # check presence of SD card in top slot 
         LSDEV=$(ls /dev | grep mmcblk1)
