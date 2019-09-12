@@ -135,6 +135,7 @@ void UpdateWindow::readStdIn(){
 		qDebug();
 		ui->progressBar->setValue(percent);
 	}
+	if(qstring.contains("dd") && qstring.contains("error")) ui->lblComplete->setText("Error writing to SD card.\n\nPlease remove and reinsert the card, then restart the update.");
 	if(line == "WriteDone"){
 		ui->btnProceed->click();
 		ui->btnCancel->setVisible(false);
