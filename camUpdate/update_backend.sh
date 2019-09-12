@@ -45,13 +45,12 @@ done
 >&2 echo 'loop done'
 
 zcat debian.img.gz | dd of=/dev/mmcblk1 2>&1 &
-#temporarily use a small number of blocks so that tests are quicker and write less to the SD card
 sleep 1
 while [ 1 ];
 do
     KILLALLRESULT="$(2>&1 killall -USR1 dd)"
     if [[ "$KILLALLRESULT" == '' ]]; then
-        sleep 1 # If killall command was successful (ie. and dd has output its progress), KILLALL will be empty.
+        sleep 1 # If killall command was successful, KILLALL will be empty.
     else
         break # If killall command errored out, dd has finished or errored out.
     fi
