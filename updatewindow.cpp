@@ -40,7 +40,7 @@ UpdateWindow::~UpdateWindow()
 
 void UpdateWindow::on_btnCancel_clicked()
 {
-	exit(0); //Presumably, to restart the camera.
+	system("reboot");
 }
 void UpdateWindow::on_btnProceed_clicked()
 {
