@@ -140,7 +140,6 @@ void UpdateWindow::readStdIn(){
 		ui->btnProceed->click();
 		ui->btnCancel->setVisible(false);
 	}
-	updateSyscheckTab();
 }
 
 void UpdateWindow::updateSyscheckTab(){
