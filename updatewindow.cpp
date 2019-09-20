@@ -130,7 +130,7 @@ void UpdateWindow::readStdIn(){
 	if(qstring.contains("out") && qstring.contains("+")){
 		qstring.truncate(qstring.indexOf('+'));
 		int64_t integer = qstring.toInt();
-		float percent = 100 * integer / 7460000;
+		float percent = 100 * integer / 7167999;
 		qDebug()<<"percent is  " << percent;
 		qDebug();
 		ui->progressBar->setValue(percent);
