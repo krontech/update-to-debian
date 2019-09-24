@@ -1,12 +1,14 @@
 To make and test a new debian update zip file:
 	Make a debian image archive, named debian.img.gz, using the chronos-updates repository. https://github.com/krontech/chronos-updates/
-	Put the archive in the camUpdate folder
-	./make_update.sh
-	Copy the camUpdate folder to a fat32 USB stick
-	Start the update just like any other update would be run on Arago, then follow the directions onscreen.
+	Copy the archive into the camUpdate folder in this repo.
+	run: ./make_update.sh
+	If testing the update from Qt Creator, copy the archive to the /opt/camera directory on the camera's SD card. This only has to be copied if you are using a new SD card or a new image.
+	If installing the update from a USB stick, copy the camUpdate folder to a FAT32 USB stick and start it from the Util screen, just like any other update on Arago.
+	Follow the directions onscreen.
+
+
 
 Run settings:
-
 
 
 Deployment
@@ -42,3 +44,4 @@ Run
 
 Other notes:
 You may see the messages that say "ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory" in the Compile Output in qt creator. This doesn't seem to be a problem - the files still get copied anyway. The messages come from deploy_update.sh.
+All files needed for the update will be copied automatically every time the update is run, except for the compressed SD card image, because of its size.
