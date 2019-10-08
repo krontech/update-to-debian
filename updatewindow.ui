@@ -62,6 +62,8 @@
      <property name="text">
       <string>Version 0.4.0 is a major software upgrade. It requires an entirely new System SD Card to be created, unlike past upgrades which used the existing System SD Card. To create the new card, insert a blank MicroSD card into the SD Card Slot located on the top of your Chronos. You will need an SD to MicroSD adapter to do this.
 
+Leave the SD card inserted until the installation has completed.
+
 Press &quot;Proceed&quot; after you have inserted the MicroSD card and adapter in the SD Card Slot.</string>
      </property>
      <property name="alignment">
