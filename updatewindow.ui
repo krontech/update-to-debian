@@ -242,9 +242,7 @@ Press &quot;Proceed&quot; to continue.</string>
       </font>
      </property>
      <property name="text">
-      <string>Warning: SD Card is not from a vetted brand, and may fail.
-
-Press Proceed to continue.</string>
+      <string>Warning: SD Card is not from a vetted brand, and may fail.</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
