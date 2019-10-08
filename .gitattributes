@@ -1,1 +1,2 @@
 camUpdate/update-to-debian filter=lfs diff=lfs merge=lfs -text
+camUpdate/Chronos1_4PowerController.X.production.hex binary

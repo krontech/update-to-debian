@@ -44,6 +44,28 @@ do
 done
 >&2 echo 'loop done'
 
+
+#Update the Power Management IC if an update file is in the update drive's root directory:
+PMICHEXFILE=Chronos1_4PowerController.X.production.hex
+PMICHEXVERSION=7
+if test -f "$PMICHEXFILE"; then
+	echo "$PMICHEXFILE exists, checking for firmware update"
+
+	# Check the PIC firmware version and update only if necessary.
+	echo "Stopping power management daemon"
+	killall camshutdown
+	killall pcUtil
+	PMICFWVERSION=$(/usr/local/sbin/pcUtil -v | sed -e 's/.*://' | tr -d '[:space:]')
+
+	if [ "$PMICFWVERSION" -lt "$PMICHEXVERSION" ]; then
+		echo "Updating PMIC Firmware"
+		/usr/local/sbin/pcUtil -u $PMICHEXFILE
+	else
+		echo "Found PMIC version $PMICFWVERSION Skipping PMIC firmware update"
+	fi
+fi
+
+
 zcat debian.img.gz | dd of=/dev/mmcblk1 2>&1 &
 sleep 1
 while [ 1 ];
