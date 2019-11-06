@@ -31,6 +31,7 @@ UpdateWindow::UpdateWindow(QWidget *parent) :
 	usbStatus = systemSDStatus = updateSDStatus = SYSCHECK_CHECKING;
 	usbStatusString = systemSDStatusString = updateSDStatusString = "Checking...\n";
 	ui->btnProceed->setEnabled(true);
+	ui->progressBar->setVisible(false);
 }
 
 UpdateWindow::~UpdateWindow()
@@ -127,12 +128,25 @@ void UpdateWindow::readStdIn(){
 	
 	if (line == "ProgramRunFromTopSD") ui->lblExplanation->setText("<html><head/><body><p>Version 0.4.0 is a major software upgrade. It requires an entirely new System SD Card to be created, unlike past upgrades which used the existing System SD Card. To create the new card, insert a blank MicroSD card in the SD Card Slot located on the top of your Chronos. You will need an SD to MicroSD adapter to do this.<br><br><span style=\" font-weight:600; color:#a40000;\">This update must be run from a USB stick, not from the SD card in the top slot. Please move the update files to a USB stick and re-run the update from there.</span></p></body></html>");
 	
+	if(qstring.contains("Skipping PMIC firmware update")){
+		ui->lblWrite->setText("Chronos 0.4.0 is now being written to the top MicroSD Card. This process should take about 15 minutes to complete.");
+		ui->progressBar->setVisible(true);
+	}
+	if(qstring.contains("Updating PMIC Firmware")) ui->lblWrite->setText("Power manager:\nUpdating power manager firmware...");
+	if(qstring.contains("Erasing flash...")) ui->lblWrite->setText("Power manager:\nErasing flash...");
+	if(qstring.contains("Erasing Address")) ui->lblWrite->setText("Power manager:\n" + qstring);
+	if(qstring.contains("Done erasing flash")) ui->lblWrite->setText("Power manager:\nDone erasing flash");
+	if(qstring.contains("Writing to address")) ui->lblWrite->setText("Power manager:\n" + qstring);
+	if(qstring.contains("Firmware update complete!")) ui->lblWrite->setText("Power manager:\nFirmware update complete!");
+	
 	if(qstring.contains("out") && qstring.contains("+")){
 		qstring.truncate(qstring.indexOf('+'));
 		int64_t integer = qstring.toInt();
 		float percent = 100 * integer / 7167999;
 		qDebug()<<"percent is  " << percent;
 		qDebug();
+		ui->lblWrite->setText("Chronos 0.4.0 is now being written to the top MicroSD Card. This process should take about 15 minutes to complete.");
+		ui->progressBar->setVisible(true);
 		ui->progressBar->setValue(percent);
 	}
 	if(qstring.contains("dd") && qstring.contains("error")) ui->lblComplete->setText("Error writing to SD card.\n\nPlease remove and reinsert the card, then restart the update.");

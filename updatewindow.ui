@@ -329,7 +329,7 @@ Press &quot;Proceed&quot; to continue.</string>
       </font>
      </property>
      <property name="text">
-      <string>Chronos 0.4.0 is now being written to the top MicroSD Card. This process should take about 15 minutes to complete.</string>
+      <string>Checking power manager firmware...</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
