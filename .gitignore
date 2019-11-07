@@ -3,6 +3,8 @@
 build-update-to-debian-*-Debug/
 build-update-to-debian-*-Release/
 camUpdate/debian.img.gz
+camUpdate/update.md5sum
+camUpdate/update-to-debian
 
 ## Ignore common temporary files.
 .DS_Store
