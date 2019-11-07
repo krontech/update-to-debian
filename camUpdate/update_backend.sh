@@ -66,7 +66,9 @@ if test -f "$PMICHEXFILE"; then
 fi
 
 
-zcat debian.img.gz | dd of=/dev/mmcblk1 2>&1 &
+zcat debian.img.gz | dd of=/dev/mmcblk1 2>&1 & # normal
+#zcat debian.img.gz | dd of=/dev/mmcblk1  count=100000 2>&1 & # testing
+
 sleep 1
 while [ 1 ];
 do
