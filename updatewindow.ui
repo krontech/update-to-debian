@@ -64,7 +64,7 @@
 
 Leave the SD card inserted until the installation has completed.
 
-Press &quot;Proceed&quot; after you have inserted the MicroSD card and adapter in the SD Card Slot.</string>
+Press &quot;Proceed&quot; and insert the MicroSD card and adapter in the SD Card Slot.</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
