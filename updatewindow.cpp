@@ -177,5 +177,6 @@ void UpdateWindow::updateSyscheckTab(){
 }
 void UpdateWindow::on_btnPowerDown_clicked()
 {
+    ui->lblComplete->setText("Shutting down...");
     std::cout << "PowerDown" << std::endl;
 }
