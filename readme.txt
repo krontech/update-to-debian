@@ -4,7 +4,8 @@ To make and test a new debian update zip file:
 	run: ./make_update.sh
 	If testing the update from Qt Creator, copy the archive to the /opt/camera directory on the camera's SD card. This only has to be copied if you are using a new SD card or a new image.
 	If installing the update from a USB stick, copy the camUpdate folder to a FAT32 USB stick and start it from the Util screen, just like any other update on Arago.
-	Follow the directions onscreen.
+	Follow the directions onscreen to apply the update.
+	Zip the contents of the camUpdate folder.
 
 
 
