@@ -15,7 +15,7 @@ INSTALLS += target
 LIBS += -static-libstdc++
 
 
-target.path = /opt/camera
+target.path = /opt/camera/camUpdate
 
 
 SOURCES += main.cpp\

@@ -1,5 +1,4 @@
 #!/bin/bash
 
-cd camUpdate
-rm update.md5sum
-md5sum update* Chronos1_4PowerController.X.production.hex debian.img.gz > update.md5sum
+rm camUpdate/update.md5sum
+md5sum camUpdate/update* camUpdate/Chronos1_4PowerController.X.production.hex camUpdate/debian.img.gz > camUpdate/update.md5sum

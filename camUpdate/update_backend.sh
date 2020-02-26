@@ -1,6 +1,6 @@
 #!/bin/busybox ash
 
-cd $(realpath $(dirname $0))
+cd $(realpath $(dirname $0))/..
 USBCHECKED=0
 
 if [ $(pwd | grep mmcblk1) != '' ]; then
@@ -33,7 +33,7 @@ do
         if [[ $USBCHECKED == 0 ]]; then
                 USBCHECKED=1
                 echo USBCheckStart
-                md5sum -c update.md5sum 2>&1
+                md5sum -c camUpdate/update.md5sum 2>&1
                 echo USBCheckDone
         fi
     fi
@@ -46,7 +46,7 @@ done
 
 
 #Update the Power Management IC if an update file is in the update drive's root directory:
-PMICHEXFILE=Chronos1_4PowerController.X.production.hex
+PMICHEXFILE=camUpdate/Chronos1_4PowerController.X.production.hex
 PMICHEXVERSION=7
 if test -f "$PMICHEXFILE"; then
 	echo "$PMICHEXFILE exists, checking for firmware update"
@@ -66,7 +66,7 @@ if test -f "$PMICHEXFILE"; then
 fi
 
 
-zcat debian.img.gz | dd of=/dev/mmcblk1 2>&1 & # normal
+zcat camUpdate/debian.img.gz | dd of=/dev/mmcblk1 2>&1 & # normal
 #zcat debian.img.gz | dd of=/dev/mmcblk1  count=100000 2>&1 & # testing
 
 sleep 1

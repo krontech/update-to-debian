@@ -1,4 +1,4 @@
-DEPLOYDIR=/opt/camera
+DEPLOYDIR=/opt/camera/camUpdate
 echo deploydir is $DEPLOYDIR
 echo working dir: $PWD
 scp -oKexAlgorithms=+diffie-hellman-group1-sha1  "camUpdate/update_real.sh"  root@192.168.12.1:$DEPLOYDIR/;
