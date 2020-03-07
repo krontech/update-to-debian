@@ -2,6 +2,9 @@ update-to-debian
 ====================
 The purpose of this app is to provide a means to write an image to an SD card using only their camera, an SD card in the camera's top slot, and a USB stick from which to run the update. The writing of the image is done by the camera itself, not the user's computer.
 
+After booting the new SD card, software can be further upgraded through the network with these directions:
+http://forum.krontech.ca/index.php?topic=531.msg3009#msg3009
+
 Here is an overview of what the app does, step by step:
  * Before letting the user begin the update:
     - Check the integrity of the files on the USB stick.
