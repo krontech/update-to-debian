@@ -6,9 +6,10 @@ After booting the new SD card, software can be further upgraded through the netw
 http://forum.krontech.ca/index.php?topic=531.msg3009#msg3009
 
 Here is an overview of what the app does, step by step:
- * Before letting the user begin the update:
-    - Check the integrity of the files on the USB stick.
-    - Check the presence and capacity of the SD card in the camera's top slot. Don't allow the the write to start if it isn't there or its capacity is smaller than 4GB.
+ * Upon starting the app, explain to the user what will happen and what steps will be taken
+ * Disable the button that starts the update unless:
+    - The necessary files are present on the USB storage device and their integrity is OK.
+    - Check the presence and capacity of the SD card in the camera's top slot. Its capacity must be at least 4GB.
  * After the user has confirmed they want to update:
     - If the power management IC has not been updated yet, update it before writing the image to the SD card.
     - Uncompress the image and write it to the SD card in the top slot.
