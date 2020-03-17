@@ -31,6 +31,7 @@ UpdateWindow::UpdateWindow(QWidget *parent) :
 	usbStatus = systemSDStatus = updateSDStatus = SYSCHECK_CHECKING;
 	usbStatusString = systemSDStatusString = updateSDStatusString = "Checking...\n";
 	ui->btnProceed->setEnabled(true);
+	ui->lblSyscheckWarning->setVisible(false);
 	ui->progressBar->setVisible(false);
 }
 
